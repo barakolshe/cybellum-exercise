@@ -1,6 +1,7 @@
 import { Button, CardMedia, TextField, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 import cybellumSign from 'assets/images/login/cybellum-sign.svg';
+import monitor from 'assets/images/login/imac-dig-twins.png';
 
 /* This is an expression to make the div always position well vertically
  40px - the downward flexbox, 527px the div height
@@ -16,11 +17,15 @@ export default function Login() {
 
   return (
     <>
-      <Box sx={{ ml: '182px', mt: topMargin, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', maxWidth: '634px' }}>
+      <Box
+        sx={{ ml: { xs: '91px', xl: '182px' }, mt: topMargin, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minWidth: '636px' }}
+      >
         <Box sx={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'flex-start', gap: '36px' }}>
           <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '32px' }}>
             <CardMedia component="img" alt="Cybellum" image={cybellumSign} sx={{ width: '150.192px', height: '55px' }} />
-            <Typography variant="h1">Welcome to the Product Security Platform</Typography>
+            <Typography variant="h1">
+              Welcome to the <br /> Product Security Platform
+            </Typography>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Box sx={{ display: 'flex', flexDirection: 'column', width: '400px', alignItems: 'flex-start', gap: '28px' }}>
@@ -45,8 +50,25 @@ export default function Login() {
           ))}
         </Box>
       </Box>
-
-      {/* <CardMedia component="img" alt="Digital Twins" image={monitor} sx={{ mt: 4, width: 300 }} /> */}
+      <Box
+        sx={{
+          postiion: 'relative',
+          display: 'flex',
+          flexDirection: 'col',
+          justifyContent: 'center',
+          margin: `calc(${topMargin} / 2) auto`,
+          padding: '0px 40px',
+        }}
+      >
+        <CardMedia
+          component="img"
+          alt="Digital Twins"
+          image={monitor}
+          sx={{
+            objectFit: 'contain',
+          }}
+        />
+      </Box>
     </>
   );
 }

@@ -53,6 +53,15 @@ const palette = {
 };
 
 const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1680, // Custom value
+    },
+  },
   typography: {
     fontFamily: ['"Noto Sans"', '"Ubuntu"', '"Helvetica Neue"', 'sans-serif'].join(','),
     h1: {
