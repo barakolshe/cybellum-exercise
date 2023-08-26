@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 
 export default function AuthLayout({ children }: { children?: React.ReactNode }) {
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'row', height: '100vh', maxWidth: '100vw' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: { xs: 'center', md: 'space-between' }, height: '100vh', width: '100%' }}>
       <Outlet />
     </Box>
   );

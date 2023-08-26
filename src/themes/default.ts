@@ -52,25 +52,33 @@ const palette = {
   button: 'hsla(0, 0%, 30%, 0.08)',
 };
 
-const theme = createTheme({
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 600,
-      md: 900,
-      lg: 1200,
-      xl: 1680, // Custom value
-    },
+const breakpoints = {
+  values: {
+    xs: 0,
+    sm: 600,
+    md: 1280, // Custom value
+    lg: 1470, // Custom value
+    xl: 1680, // Custom value
   },
+};
+
+const theme = createTheme({
   typography: {
     fontFamily: ['"Noto Sans"', '"Ubuntu"', '"Helvetica Neue"', 'sans-serif'].join(','),
     h1: {
-      fontSize: '3.5rem',
+      fontSize: '2rem', // font size for smaller screens
       fontWeight: '300',
       fontStyle: 'normal',
-      lineHeight: '4rem',
+      lineHeight: '2.75rem',
       letterSpacing: '-0.5px',
       color: palette.text.primary,
+      [`@media (min-width:${breakpoints.values.sm}px)`]: {
+        fontSize: '3rem',
+        lineHeight: '4rem',
+      },
+      [`@media (min-width:${breakpoints.values.lg}px)`]: {
+        fontSize: '3.5rem',
+      },
     },
     subtitle1: {},
   },
@@ -217,7 +225,8 @@ const theme = createTheme({
       },
     },
   },
-  ...palette,
+  palette: { ...palette },
+  breakpoints: { ...breakpoints },
 });
 
 export default theme;
