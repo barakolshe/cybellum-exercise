@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import cybellumSign from "assets/images/login/cybellum-sign.svg";
 import monitor from "assets/images/login/imac-dig-twins.png";
 import HoverButton from "components/ui/HoverButton";
-import LoginForm from "./LoginForm";
+import LoginForm from "forms/LoginForm";
 
 const marginLinks = "40px";
 /* 
