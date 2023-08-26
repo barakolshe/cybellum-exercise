@@ -1,10 +1,12 @@
-import { routes } from 'app/routes';
 import React from 'react';
-import { useRoutes } from 'react-router';
+import Router from '../router/Router';
 
 function App() {
-  const content = useRoutes(routes);
-  return <React.Fragment>{content}</React.Fragment>;
+  return (
+    <React.Fragment>
+      <Router />
+    </React.Fragment>
+  );
 }
 
 export default App;

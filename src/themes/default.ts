@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material/styles';
 
-// Ability to add a custom color
+// Custom colors
 declare module '@mui/material/styles' {
   interface Palette {
     outline: Palette['primary'];
@@ -9,20 +9,6 @@ declare module '@mui/material/styles' {
   interface PaletteOptions {
     outline: PaletteOptions['primary'];
     button: string;
-  }
-}
-
-/* Ability to add custom variants for components.
-   The pattern is:
-    declare module '@mui/material/[component-name]' {
-      interface [component-name]PropsVariantOverrides {
-        main: true;
-      }
-}'*/
-declare module '@mui/material/Button' {
-  interface ButtonPropsVariantOverrides {
-    primary: true;
-    hover: true;
   }
 }
 
@@ -63,10 +49,11 @@ const breakpoints = {
 };
 
 const theme = createTheme({
+  spacing: 4,
   typography: {
     fontFamily: ['"Noto Sans"', '"Ubuntu"', '"Helvetica Neue"', 'sans-serif'].join(','),
     h1: {
-      fontSize: '2rem', // font size for smaller screens
+      fontSize: '1.9rem', // font size for mobile screens
       fontWeight: '300',
       fontStyle: 'normal',
       lineHeight: '2.75rem',
@@ -80,7 +67,6 @@ const theme = createTheme({
         fontSize: '3.5rem',
       },
     },
-    subtitle1: {},
   },
   components: {
     MuiCssBaseline: {
@@ -88,6 +74,8 @@ const theme = createTheme({
         html: {
           height: '100%',
           scrollBehavior: 'smooth',
+          margin: '0',
+          padding: '0',
         },
         body: {
           WebkitFontSmoothing: 'antialiased',
@@ -95,6 +83,13 @@ const theme = createTheme({
           fontFamily: ['"Noto Sans"', '"Ubuntu"', '"Helvetica Neue"', 'sans-serif'].join(','),
           height: '100%',
           overflowY: 'auto',
+          margin: '0',
+          padding: '0',
+        },
+        '#root': {
+          height: '100%',
+          margin: '0',
+          padding: '0',
         },
       },
     },
@@ -111,48 +106,6 @@ const theme = createTheme({
             span: {
               display: 'none',
             },
-          },
-        },
-      },
-    },
-    MuiInputBase: {
-      styleOverrides: {
-        root: {
-          padding: '0.25rem 1rem',
-          height: '3rem',
-        },
-        input: {
-          padding: '0rem !important',
-          margin: '0.5rem 0rem',
-          height: '1.5rem',
-        },
-      },
-    },
-    MuiInputLabel: {
-      styleOverrides: {
-        root: {
-          fontSize: '0.875rem;',
-          fontStyle: 'normal',
-          fontWeight: '400',
-          lineHeight: '1.25rem' /* 142.857% */,
-          letterSpacing: '0.25px',
-          color: palette.text.secondary,
-          marginLeft: '16px',
-          '&.Mui-focused': {
-            color: palette.text.secondary,
-          },
-        },
-        focused: {},
-      },
-    },
-    MuiOutlinedInput: {
-      styleOverrides: {
-        root: {
-          '&:hover .MuiOutlinedInput-notchedOutline': {
-            borderColor: palette.outline.light, // replace with your desired hover color
-          },
-          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-            borderColor: palette.outline.main, // replace with your desired focus color
           },
         },
       },
@@ -174,48 +127,6 @@ const theme = createTheme({
       },
     },
     MuiButton: {
-      variants: [
-        {
-          props: { variant: 'primary' }, // Custom variant
-          style: {
-            display: 'flex',
-            borderRadius: '4px',
-            width: '400px',
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: palette.secondary.main,
-            color: palette.secondary.contrastText,
-            fontSize: '1rem',
-            fontStyle: 'normal',
-            fontWeight: '500',
-            lineHeight: '1.5rem' /* 150% */,
-            letterSpacing: '0.15px',
-            '&:hover': {
-              flexShrink: 0,
-              /* Elevation/light/1 */
-              boxShadow: '0px 1px 3px 1px rgba(28, 27, 31, 0.15), 0px 1px 2px 0px rgba(28, 27, 31, 0.30)',
-              backgroundColor: palette.secondary.main,
-            },
-          },
-        },
-        {
-          props: { variant: 'hover' }, // Custom variant
-          style: {
-            color: palette.text.secondary,
-            textAlign: 'center',
-            fontFamily: 'Noto Sans',
-            fontSize: '1rem',
-            fontStyle: 'normal',
-            fontWeight: '500',
-            lineHeight: '1.5rem' /* 142.857% */,
-            letterSpacing: '0.15px',
-            padding: '0.25rem 0.5rem',
-            '&:hover': {
-              backgroundColor: palette.button,
-            },
-          },
-        },
-      ],
       defaultProps: {},
       styleOverrides: {
         root: {

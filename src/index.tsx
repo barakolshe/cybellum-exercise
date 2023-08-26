@@ -4,6 +4,7 @@ import '@fontsource/noto-sans/500.css';
 import '@fontsource/noto-sans/700.css';
 import '@fontsource/noto-sans/900.css';
 import { CssBaseline, ThemeProvider } from '@mui/material';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import App from 'app/App';
 import store from 'app/store';
 import React from 'react';
@@ -13,16 +14,21 @@ import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from 'reportWebVitals';
 import theme from 'themes/default';
 
+// Create a client
+const queryClient = new QueryClient();
+
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
-          <App />
-        </ThemeProvider>
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider theme={theme}>
+            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+            <CssBaseline />
+            <App />
+          </ThemeProvider>
+        </QueryClientProvider>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,

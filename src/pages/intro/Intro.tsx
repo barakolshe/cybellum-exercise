@@ -1,20 +1,31 @@
-import { Card, CardContent, Typography } from '@mui/material';
-import logo from 'assets/images/cybellum-logo-vertical-black.svg';
+import { Card, CardContent, CircularProgress, Typography } from '@mui/material';
+import { useQuery } from '@tanstack/react-query';
+import { getApprovedNotification } from 'api/notifications/notifications';
+import { RootState } from 'app/store';
+import { useSelector } from 'react-redux';
 import Styled from './intro.styled';
 
 export default function Intro() {
+  const accessToken = useSelector((state: RootState) => state.user.accessToken);
+
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['getApprovedNotification'],
+    queryFn: () => getApprovedNotification({ Authorization: `Bearer ${accessToken}` }),
+  });
+
+  let main = null;
+  if (isLoading) {
+    main = <CircularProgress />;
+  } else if (isError) {
+    main = <Typography color="error.main">Error</Typography>;
+  } else {
+    main = <Typography variant="h1">{data.title}</Typography>;
+  }
+
   return (
     <Styled.Box>
       <Card sx={{ maxWidth: 345, textAlign: 'center' }}>
-        <CardContent>
-          <Styled.CardMedia component="img" alt="Cybellum" image={logo} />
-          <Typography gutterBottom variant="h5" component="div" sx={{ mt: 4 }}>
-            Cybellum Exercise
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Please read README.md and follow the instructions there
-          </Typography>
-        </CardContent>
+        <CardContent>{main}</CardContent>
       </Card>
     </Styled.Box>
   );
