@@ -21,6 +21,11 @@ const formValidation = {
   },
 };
 
+type LoginTypes = {
+  email: string;
+  password: string;
+};
+
 const LoginForm: FC<LoginFormProps> = () => {
   const theme = useTheme();
 
@@ -28,7 +33,7 @@ const LoginForm: FC<LoginFormProps> = () => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<AuthRequestType>();
+  } = useForm<LoginTypes>();
   const [loginError, setLoginError] = React.useState<string | null>(null);
 
   const dispatch = useDispatch();
