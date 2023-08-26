@@ -1,10 +1,18 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import { createApi } from "@reduxjs/toolkit/query/react";
+import baseQuery from "helpers/baseQuery";
+import { NotificationsResponseType } from "./notifications.interface";
 
-export const getNotifications = async (id: Number, headers: AxiosRequestConfig<any>['headers'] | undefined) => {
-  const response = await axios.get(`${process.env.REACT_APP_JSON_SERVER_API_URL}/notifications/${id}`, { headers: { ...headers } });
-  return response.data;
-};
+export const notificationApi = createApi({
+  reducerPath: "notificationApi",
+  baseQuery: baseQuery("/"),
+  endpoints: (builder) => ({
+    notification: builder.query<NotificationsResponseType, number>({
+      query: (id) => ({
+        url: `/notifications/${id}`,
+        method: "GET",
+      }),
+    }),
+  }),
+});
 
-export const getApprovedNotification = (headers: AxiosRequestConfig<any>['headers'] | undefined) => {
-  return getNotifications(1, headers);
-};
+export const { useNotificationQuery } = notificationApi;
